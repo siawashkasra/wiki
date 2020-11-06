@@ -4,7 +4,7 @@ from django.contrib import messages
 
 from . import util
 import markdown2
-
+from random import choice
 
 def index(request):
     return render(request, "encyclopedia/index.html", 
@@ -60,3 +60,6 @@ def update(request, title):
     content = request.POST.get('markdown', False)
     util.save_entry(title, content)
     return redirect('entry', title=title)
+
+def random(request):
+    return redirect('entry', title=choice(util.list_entries()))
