@@ -42,7 +42,7 @@ def queryExact(query):
     return False
 
 def create(request):
-    return render(request, 'encyclopedia/create.html')
+    return render(request, 'encyclopedia/create.html', {'entries': util.list_entries})
 
 def save(request):
     title = request.POST.get('title', False)
@@ -50,5 +50,13 @@ def save(request):
     if queryExact(title):
         messages.error(request, queryExact(title))
         return redirect('create')
+    util.save_entry(title, content)
+    return redirect('entry', title=title)
+
+def edit(request, title):
+    return render(request, 'encyclopedia/edit.html', {'entry': util.get_entry(title)})
+
+def update(request, title):
+    content = request.POST.get('markdown', False)
     util.save_entry(title, content)
     return redirect('entry', title=title)

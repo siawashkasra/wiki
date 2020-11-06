@@ -1,0 +1,28 @@
+{% extends "encyclopedia/layout.html" %}
+
+{% block body %}
+
+{% for message in messages %}
+  <div class="alert alert-danger" role="alert">
+    This title already exists! you can view it at <a href="{% url 'entry' message %}">{{ message }}</a>
+  </div>
+{% endfor %}
+<form action="{% url 'update' request.path|slice:'8:' %}" method="POST" class="was-validated">
+    {% csrf_token %}
+    <div class="form-group">
+      <label for="title">Title</label>
+      <input type="text" class="form-control" name="title" value="{{ request.path|slice:'8:' }}" id="title" placeholder="Title" readonly>
+      <div id="" class="invalid-feedback">
+          Please provide a valid title.
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="markdown">Markdown Content</label>
+      <textarea class="form-control" name="markdown" id="markdown" rows="10" required>{{ entry }}</textarea>
+      <div id="" class="invalid-feedback">
+        Please provide a valid markdown.
+      </div>
+    </div>
+    <button type="submit" class="btn btn-success">Update</button>
+  </form>
+{% endblock %}

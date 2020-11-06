@@ -1,4 +1,4 @@
-# Flask 
+# Flask (web framework)
 
 is a micro [web framework](https://en.wikipedia.org/wiki/Web_framework "Web framework") written in [Python](https://en.wikipedia.org/wiki/Python_(programming_language) "Python (programming language)"). It is classified as a [microframework](https://en.wikipedia.org/wiki/Microframework "Microframework") because it does not require particular tools or libraries. 
 
