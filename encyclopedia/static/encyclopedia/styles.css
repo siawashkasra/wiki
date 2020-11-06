@@ -25,12 +25,15 @@ textarea {
     width: 100%;
     font-size: 15px;
     line-height: 15px;
+    text-align: center;
+    height: 30px;
 }
 
 .sidebar {
     background-color: #f0f0f0;
     height: 100vh;
-    padding: 20px;
+    padding-left: 40px;
+    box-shadow: 0 25px 20px -20px rgba(0, 0, 0, 0.3), 0 0 15px rgba(0, 0, 0, 0.06);
 }
 
 .sidebar h2 {
