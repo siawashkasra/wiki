@@ -51,4 +51,4 @@ def save(request):
         messages.error(request, queryExact(title))
         return redirect('create')
     util.save_entry(title, content)
-    return redirect('index')
+    return redirect('entry', title=title)
