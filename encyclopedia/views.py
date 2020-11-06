@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.http import Http404
 
 from . import util
+import markdown2
 
 
 def index(request):
@@ -13,7 +14,7 @@ def entry(request, title):
     entry = util.get_entry(title)
     if entry and entry is not None:
         return render(request, "encyclopedia/entry.html", {
-            "entry": entry,
+            "entry": markdown2.markdown(entry),
         })
     raise Http404("Entry doesn't exist!")
 
@@ -38,3 +39,12 @@ def queryExact(query):
         if str(query.lower()) == title.lower():
             return title
     return False
+
+def create(request):
+    return render(request, 'encyclopedia/create.html')
+
+def save(request):
+    title = request.POST.get('title', False)
+    content = request.POST.get('markdown', False)
+    util.save_entry(title, content)
+    return redirect('index')
